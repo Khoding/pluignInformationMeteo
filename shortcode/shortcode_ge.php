@@ -52,54 +52,56 @@ SQL;
         ob_start();
 
         foreach ($result as $val) { ?>
-            <article class="content-meteo gap-2 d-flex flex-column flex-lg-row">
-                <img class="webcam-meteo" src="<?= $val->url_web ?>">
-                <section class="d-flex flex-column flex-grow-1">
-                    <section class="mb-2 p-2 gap-5 container-fluid bg-white">
-                        <div class="row">
-                            <div class="row col-sm mb-2">
-                                <p class="mb-0 fw-bold"><?= "Météo à " . date('H:i', strtotime($val->heure_bul)); ?></p>
-                                <p class="mb-0 fw-bold"><?= strftime('%A %d %B ', strtotime($val->date_bul)) ?></p>
+            <article class="content-meteo gap-2 container-fluid">
+                <div class="row col-sm row-md mb-2">
+                    <img class="webcam-meteo col pe-lg-1 mb-2 mb-lg-0" src="<?= $val->url_web ?>">
+                    <section class="col ps-lg-1">
+                        <section class="mb-2 p-2 container-fluid h-100 bg-white">
+                            <div class="row d-lg-block d-xl-flex row-xl">
+                                <div class="row col-sm">
+                                    <p class="fw-bold"><?= "Météo à " . date('H:i', strtotime($val->heure_bul)); ?></p>
+                                    <p class="fw-bold"><?= strftime('%A %d %B ', strtotime($val->date_bul)) ?></p>
+                                </div>
+                                <div class="row col-sm">
+                                    <p class="fw-bold">
+                                        Température :
+                                        <span><?= $val->temperature_bul ?>°</span>
+                                    </p>
+                                    <p class="fw-bold">État des pistes : <?= $val->etat_pst ?></p>
+                                    <p class="fw-bold">Enneigement : <?= $val->etat_nge ?></p>
+                                </div>
                             </div>
-                            <div class="row col-sm">
-                                <p class="mb-0 fw-bold">
-                                    Température :
-                                    <span><?= $val->temperature_bul ?>°</span>
-                                </p>
-                                <p class="mb-0 fw-bold">État des pistes : <?= $val->etat_pst ?></p>
-                                <p class="mb-0 fw-bold">Enneigement : <?= $val->etat_nge ?></p>
-                            </div>
-                        </div>
+                        </section>
                     </section>
-                    <section class="d-flex flex-column flex-sm-row gap-5 h-100 bg-white p-2">
-                        <div class="d-flex flex-row flex-sm-column">
-                            <div>Installations :</div>
-                            <img width="100px" height="100px" src="<?= $path ?>/imageIsActive/tsb.png">
+                </div>
+                <section class="d-flex flex-column flex-sm-row gap-5 h-100 bg-white p-2">
+                    <div class="d-flex flex-row flex-sm-column">
+                        <div>Installations :</div>
+                        <img width="100px" height="100px" src="<?= $path ?>/imageIsActive/tsb.png">
+                    </div>
+                    <div class="d-flex flex-row">
+                        <div class="container-fluid">
+                            <?php foreach (array_chunk($result1, 2) as $val) { ?>
+                                <div class="row">
+                                    <?php foreach ($val as $v) { ?>
+                                        <div class="col-1">
+                                            <?php
+                                            if ($v->isActive == 1) {
+                                            ?>
+                                                <img class="isActiveImg" src="<?= $path ?>/imageIsActive/green.png">
+                                            <?php
+                                            } else { ?>
+                                                <img class="isActiveImg" src="<?= $path ?>/imageIsActive/red.png">
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="col"><?= $v->nom_ins ?></div>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
                         </div>
-                        <div class="d-flex flex-row">
-                            <div class="container-fluid">
-                                <?php foreach (array_chunk($result1, 2) as $val) { ?>
-                                    <div class="row">
-                                        <?php foreach ($val as $v) { ?>
-                                            <div class="col-1">
-                                                <?php
-                                                if ($v->isActive == 1) {
-                                                ?>
-                                                    <img class="isActiveImg" src="<?= $path ?>/imageIsActive/green.png">
-                                                <?php
-                                                } else { ?>
-                                                    <img class="isActiveImg" src="<?= $path ?>/imageIsActive/red.png">
-                                                <?php
-                                                }
-                                                ?>
-                                            </div>
-                                            <div class="col"><?= $v->nom_ins ?></div>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </section>
+                    </div>
                 </section>
             </article>
 <?php
