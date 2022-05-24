@@ -55,8 +55,8 @@ SQL;
             <article class="content-meteo gap-2 container-fluid">
                 <div class="row col-sm row-md">
                     <img class="webcam-meteo col ps-xl-0 pe-lg-1 mb-xl-0 mb-2" src="<?= $val->url_web ?>">
-                    <section class="col ps-lg-0 pe-xl-1 mb-xl-0 mb-2">
-                        <section class="p-2 container-fluid h-100 bg-white">
+                    <section class="col row-xl ps-lg-0 pe-xl-1 mb-xl-0 mb-2">
+                        <section class="data-meteo p-2 container-fluid bg-white">
                             <div class="row d-lg-block d-xl-flex row-xl">
                                 <div class="row col-sm">
                                     <p class="fw-bold"><?= "Météo à " . date('H:i', strtotime($val->heure_bul)); ?></p>
@@ -73,13 +73,12 @@ SQL;
                             </div>
                         </section>
                     </section>
-                    <div class="row col-xl ms-0 ps-xl-0 mb-xl-0 mb-2">
-                        <section class="p-2 container-fluid h-100 bg-white">
-                            <div class="d-flex flex-row flex-sm-column">
-                                <div>Installations :</div>
-                                <img width="100px" height="100px" src="<?= $path ?>/imageIsActive/tsb.png">
+                    <div class="row ms-0 ps-4 pe-0 ps-xl-0 mb-xl-0 mb-2">
+                        <section class="p-2 row container-fluid h-100 bg-white">
+                            <div class="row col-sm-auto">
+                                <img style="max-width: 100px; max-height: 100px" width="100px" height="100px" src="<?= $path ?>/imageIsActive/tsb.png">
                             </div>
-                            <div class="d-flex flex-row">
+                            <div class="row col-sm">
                                 <div class="container-fluid px-0">
                                     <?php foreach (array_chunk($result1, 2) as $val) { ?>
                                         <div class="row">
