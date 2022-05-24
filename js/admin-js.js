@@ -19,12 +19,9 @@ jQuery(document).ready(function ($) {
         $('#neigeSelect').val(0);
     }
 
-
-
     $('.radioWebClass')
         .children()
         .on('change', function () {
-
             $id_webRa = this.id;
             $.post(
                 '../wp-content/plugins/informationMeteo/json/webcam.json.php?_=' +
@@ -32,10 +29,14 @@ jQuery(document).ready(function ($) {
                 {
                     id_webRa: $id_webRa,
                     id_webRaChange: "changed"
+                },
+                function (data) {
+                    $(".check_webcam").prop("disabled", "");
+                    $("#webcamId_" + data.id_webRa + " .check_webcam").prop("disabled", "true");
+                    $("#webcamId_" + data.id_webRa + " .check_webcam").prop("checked", "");
+                    $( "#webcamSelectId" ).load(window.location.href + " #webcamSelectId" );
                 }
             );
-            const monElement= document.getElementById('testtttt');
-            console.log(monElement.children[4].val());
         });
 
     $('.checkBoxWebClass')
@@ -178,8 +179,4 @@ jQuery(document).ready(function ($) {
             location.reload();
         }
     });
-
-    $('#gestionWebcamModal').on('hidden.bs.modal', function () {
-        location.reload();
-    })
 });

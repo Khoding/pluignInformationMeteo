@@ -10,6 +10,7 @@ $id_webRaChanged = $_POST["id_webRaChange"];
 $act = $_POST['chWeb'];
 $id_webCh = $_POST["id_webCh"];
 
+
 if ($id_webRaChanged =="changed") {
     $web->modificationDef($id_webRa);
 }
@@ -22,4 +23,4 @@ if ($act == "checked"){
 
 
 
-//echo json_encode($id_webRa);
+echo json_encode($_POST);
