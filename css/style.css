@@ -12,7 +12,7 @@
     height: 25%;
 }
 
-#content-meteo .modal-body > p {
+#content-meteo .modal-body>p {
     display: none;
 }
 
@@ -26,13 +26,18 @@
     }
 }
 
+.installation-mobile {
+    margin-left: 12px;
+}
+
 @media screen and (min-width: 1200px) {
     .content-meteo .data-meteo {
         height: auto;
+        margin-bottom: 2px;
     }
 }
 
-.isActiveImg{
+.isActiveImg {
     width: 20px;
     height: 20px;
 }
