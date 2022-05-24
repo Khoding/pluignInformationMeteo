@@ -53,10 +53,10 @@ SQL;
 
         foreach ($result as $val) { ?>
             <article class="content-meteo gap-2 container-fluid">
-                <div class="row col-sm row-md mb-2">
-                    <img class="webcam-meteo col pe-lg-1 mb-2 mb-lg-0" src="<?= $val->url_web ?>">
-                    <section class="col ps-lg-1">
-                        <section class="mb-2 p-2 container-fluid h-100 bg-white">
+                <div class="row col-sm row-md">
+                    <img class="webcam-meteo col ps-xl-0 pe-lg-1 mb-xl-0 mb-2" src="<?= $val->url_web ?>">
+                    <section class="col ps-lg-0 pe-xl-1 mb-xl-0 mb-2">
+                        <section class="p-2 container-fluid h-100 bg-white">
                             <div class="row d-lg-block d-xl-flex row-xl">
                                 <div class="row col-sm">
                                     <p class="fw-bold"><?= "Météo à " . date('H:i', strtotime($val->heure_bul)); ?></p>
@@ -73,36 +73,38 @@ SQL;
                             </div>
                         </section>
                     </section>
-                </div>
-                <section class="d-flex flex-column flex-sm-row gap-5 h-100 bg-white p-2">
-                    <div class="d-flex flex-row flex-sm-column">
-                        <div>Installations :</div>
-                        <img width="100px" height="100px" src="<?= $path ?>/imageIsActive/tsb.png">
-                    </div>
-                    <div class="d-flex flex-row">
-                        <div class="container-fluid">
-                            <?php foreach (array_chunk($result1, 2) as $val) { ?>
-                                <div class="row">
-                                    <?php foreach ($val as $v) { ?>
-                                        <div class="col-1">
-                                            <?php
-                                            if ($v->isActive == 1) {
-                                            ?>
-                                                <img class="isActiveImg" src="<?= $path ?>/imageIsActive/green.png">
-                                            <?php
-                                            } else { ?>
-                                                <img class="isActiveImg" src="<?= $path ?>/imageIsActive/red.png">
-                                            <?php
-                                            }
-                                            ?>
+                    <div class="row col-xl ms-0 ps-xl-0 mb-xl-0 mb-2">
+                        <section class="p-2 container-fluid h-100 bg-white">
+                            <div class="d-flex flex-row flex-sm-column">
+                                <div>Installations :</div>
+                                <img width="100px" height="100px" src="<?= $path ?>/imageIsActive/tsb.png">
+                            </div>
+                            <div class="d-flex flex-row">
+                                <div class="container-fluid px-0">
+                                    <?php foreach (array_chunk($result1, 2) as $val) { ?>
+                                        <div class="row">
+                                            <?php foreach ($val as $v) { ?>
+                                                <div class="col-1">
+                                                    <?php
+                                                    if ($v->isActive == 1) {
+                                                    ?>
+                                                        <img class="isActiveImg" src="<?= $path ?>/imageIsActive/green.png">
+                                                    <?php
+                                                    } else { ?>
+                                                        <img class="isActiveImg" src="<?= $path ?>/imageIsActive/red.png">
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
+                                                <div class="col"><?= $v->nom_ins ?></div>
+                                            <?php } ?>
                                         </div>
-                                        <div class="col"><?= $v->nom_ins ?></div>
                                     <?php } ?>
                                 </div>
-                            <?php } ?>
-                        </div>
+                            </div>
+                        </section>
                     </div>
-                </section>
+                </div>
             </article>
 <?php
         }
