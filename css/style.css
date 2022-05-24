@@ -12,6 +12,10 @@
     height: 25%;
 }
 
+#content-meteo .modal-body > p {
+    display: none;
+}
+
 @media screen and (min-width: 992px) {
     .content-meteo .webcam-meteo {
         height: 250px;
