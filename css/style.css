@@ -4,11 +4,15 @@
     width: fit-content;
 } */
 
+#content-meteo .modal-body {
+    background-color: red;
+}
+
 .content-meteo .webcam-meteo {
     height: 25%;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 992px) {
     .content-meteo .webcam-meteo {
         height: 250px;
     }
