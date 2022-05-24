@@ -12,10 +12,6 @@
     height: 25%;
 }
 
-.content-meteo .data-meteo {
-    height: 100%;
-}
-
 #content-meteo .modal-body > p {
     display: none;
 }
@@ -23,6 +19,10 @@
 @media screen and (min-width: 992px) {
     .content-meteo .webcam-meteo {
         height: 250px;
+    }
+
+    .content-meteo .data-meteo {
+        height: 100%;
     }
 }
 
