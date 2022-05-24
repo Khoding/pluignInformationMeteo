@@ -1,4 +1,4 @@
-<div class="row ms-2 ps-1 d-none d-xl-flex">
+<div class="row ms-2 ps-1 d-none d-xl-flex meteo-installation">
   <section class="p-2 row container-fluid bg-white">
     <div class="row col-sm-auto">
       <img style="max-width: 75px; max-height: 75px" width="75px" height="75px" src="<?= $path ?>/imageIsActive/tsb.png">

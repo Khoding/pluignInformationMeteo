@@ -52,23 +52,46 @@ SQL;
         ob_start();
         $mobile = false;
         foreach ($result as $val) { ?>
+            <div class="meteo-container">
+                <div class="webcam-container">
+                    <img class="webcam-meteo" height="250px" src="<?= $val->url_web ?>">
+                </div>
+                <div class="meteo-data-container">
+                    <div class="meteo-data-header">
+                        <span>
+                            <?= strftime('%A %d %B ', strtotime($val->date_bul)) ?>
+                        </span>
+                        <span>
+                            Météo à <?= date('H:i', strtotime($val->heure_bul)); ?>
+                        </span>
+                    </div>
+                    <div class="div2">
+                        Température :
+                        <span><?= $val->temperature_bul ?>°</span>
+                    </div>
+                    <div class="div3">État des pistes : <?= $val->etat_pst ?></div>
+                    <div class="div4">Enneigement : <?= $val->etat_nge ?></div>
+                    <div class="div5"><?= $val->texte_bul; ?></div>
+                </div>
+                <div class="meteo-installations-container">d </div>
+            </div>
             <article class="content-meteo gap-2 container-fluid">
                 <div class="row col-sm row-md">
                     <img class="webcam-meteo col ps-xl-0 pe-lg-1 mb-xl-0 mb-1" src="<?= $val->url_web ?>">
-                    <section class="col row-xl mb-1 ps-lg-0 pe-xl-1">
+                    <section class="data-meteo-container col row-xl">
                         <section class="data-meteo p-2 container-fluid bg-white">
                             <div class="row d-lg-block d-xl-flex row-xl">
                                 <div class="row col-sm">
-                                    <p class="fw-bold"><?= "Météo à " . date('H:i', strtotime($val->heure_bul)); ?></p>
-                                    <p class="fw-bold"><?= strftime('%A %d %B ', strtotime($val->date_bul)) ?></p>
-                                </div>
-                                <div class="row col-sm">
-                                    <p class="fw-bold">
+                                    <p class="fw-bold mb-0"><?= strftime('%A %d %B ', strtotime($val->date_bul)) ?></p>
+                                    <p class="fw-bold mb-0">
                                         Température :
                                         <span><?= $val->temperature_bul ?>°</span>
                                     </p>
-                                    <p class="fw-bold">État des pistes : <?= $val->etat_pst ?></p>
-                                    <p class="fw-bold">Enneigement : <?= $val->etat_nge ?></p>
+                                </div>
+                                <div class="row col-sm">
+                                    <p class="fw-bold mb-0"><?= "Météo à " . date('H:i', strtotime($val->heure_bul)); ?></p>
+                                    <p class="fw-bold mb-0">État des pistes : <?= $val->etat_pst ?></p>
+                                    <p class="fw-bold mb-0">Enneigement : <?= $val->etat_nge ?></p>
                                 </div>
                             </div>
                         </section>
