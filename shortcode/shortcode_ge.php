@@ -52,53 +52,52 @@ SQL;
         ob_start();
 
         foreach ($result as $val) { ?>
-            <article class="content-meteo gap-2 d-flex">
-                <img height="250px" src="<?= $val->url_web ?>">
-                <section class="d-flex flex-row flex-grow-1">
-                    <section class="d-flex me-2 mb-1 p-2 gap-5 flex-column bg-white">
-                        <div class="flex-column">
+            <article class="content-meteo gap-2 d-flex flex-column flex-xl-row">
+                <img class="webcam-meteo" src="<?= $val->url_web ?>">
+                <section class="d-flex flex-column flex-grow-1">
+                    <section class="d-flex mb-2 p-2 gap-5 flex-row bg-white">
+                        <div class="flex-row">
                             <p class="fw-bold"><?= "Météo à " . date('H:i', strtotime($val->heure_bul)); ?></p>
-                        </div>
-                        <div class="fw-bold">
-                            Température :
-                            <span><?= $val->temperature_bul ?>°</span>
-                        </div>
-                        <div class="flex-column">
                             <p class="mb-0 fw-bold"><?= strftime('%A %d %B ', strtotime($val->date_bul)) ?></p>
+                        </div>
+                        <div class="flex-row">
+                            <p class="mb-0 fw-bold">
+                                Température :
+                                <span><?= $val->temperature_bul ?>°</span>
+                            </p>
                             <p class="mb-0 fw-bold">État des pistes : <?= $val->etat_pst ?></p>
                             <p class="mb-0 fw-bold">Enneigement : <?= $val->etat_nge ?></p>
                         </div>
                     </section>
-                    <section class="d-flex flex-row flex-grow-1 bg-white mb-1">
-                        <div class="d-flex align-items-center me-2">
-                            <img height="150px" src="<?= $path ?>/imageIsActive/tsb.png">
+                    <section class="d-flex flex-row gap-5 h-100 bg-white p-2">
+                        <div class="d-flex flex-column">
+                            <div>Installations :</div>
+                            <img width="100px" height="100px" src="<?= $path ?>/imageIsActive/tsb.png">
                         </div>
-                        <table class="d-flex flex-column w-auto" cellspacing="0">
-                            <thead>
-                                <td>
-                                    Installations :
-                                </td>
-                            </thead>
-                            <?php foreach (array_chunk($result1, 2) as $val) { ?>
-                                <?php foreach ($val as $v) { ?>
+                        <div class="d-flex flex-row">
+                            <table class="flex-grow-1">
+                                <?php foreach (array_chunk($result1, 2) as $val) { ?>
                                     <tr>
-                                        <td>
-                                            <?php
-                                            if ($v->isActive == 1) {
-                                            ?>
-                                                <img class="isActiveImg" src="<?= $path ?>/imageIsActive/green.png">
-                                            <?php
-                                            } else { ?>
-                                                <img class="isActiveImg" src="<?= $path ?>/imageIsActive/red.png">
-                                            <?php
-                                            }
-                                            ?>
-                                        </td>
-                                        <td><?= $v->nom_ins ?></td>
+                                        <?php foreach ($val as $v) { ?>
+                                            <td class="px-5">
+                                                <?php
+                                                if ($v->isActive == 1) {
+                                                ?>
+                                                    <img class="isActiveImg" src="<?= $path ?>/imageIsActive/green.png">
+                                                <?php
+                                                } else { ?>
+                                                    <img class="isActiveImg" src="<?= $path ?>/imageIsActive/red.png">
+                                                <?php
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td><?= $v->nom_ins ?></td>
+                                        <?php } ?>
                                     </tr>
                                 <?php } ?>
-                            <?php } ?>
-                        </table>
+                            </table>
+                        </div>
                     </section>
                 </section>
             </article>

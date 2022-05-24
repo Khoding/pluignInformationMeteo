@@ -1,7 +1,17 @@
-.content-meteo {
+/* .content-meteo {
     background-color: red;
     padding: 10px;
     width: fit-content;
+} */
+
+.content-meteo .webcam-meteo {
+    height: 25%;
+}
+
+@media screen and (min-width: 1200px) {
+    .content-meteo .webcam-meteo {
+        height: 250px;
+    }
 }
 
 .isActiveImg{
